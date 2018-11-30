@@ -66,10 +66,10 @@ module _ {i j} {A : Type i} {B : Type j} where
   inr≠inl a₁ b₂ p = lower $ Coprod=-in p
 
   instance
-    ⊔-level : ∀ {n} → has-level (S (S n)) A → has-level (S (S n)) B
+    ⊔-level : ∀ {n} {{_ : has-level (S (S n)) A}} {{_ : has-level (S (S n)) B}}
               → has-level (S (S n)) (Coprod A B)
-    ⊔-level {n} pA pB = has-level-in (⊔-level-aux pA pB) where
-      
+    ⊔-level {n} {{pA}} {{pB}} = has-level-in (⊔-level-aux pA pB) where
+
       instance _ = pA; _ = pB
 
       ⊔-level-aux : has-level (S (S n)) A → has-level (S (S n)) B

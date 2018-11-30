@@ -80,7 +80,7 @@ module FunextDep {j} {P : A → Type j} {f g : Π A P} (h : f ∼ g)
 
   abstract
     Q-is-contr : (x : A) → is-contr (Q x)
-    Q-is-contr x = pathfrom-is-contr (f x)
+    Q-is-contr x = pathfrom-is-contr {x = f x}
 
     instance
       ΠAQ-is-contr : is-contr (Π A Q)
@@ -112,7 +112,7 @@ module StrongFunextDep {j} {P : A → Type j} where
     → idp == λ= (λ x → idp {a = f x})
   λ=-idp f = ap (ap (λ u x → fst (u x)))
     (contr-has-all-paths {{=-preserves-level
-                           (ΠAQ-is-contr (λ x → idp))}}
+                           {{ΠAQ-is-contr (λ x → idp)}}}}
                          idp (Q-f==Q-g (λ x → idp)))
 
   λ=-η : {f g : Π A P} (p : f == g)
